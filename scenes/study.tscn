@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxrwfa485ejd4"]
+
+[ext_resource type="Script" uid="uid://dxo5c1q3xduxp" path="res://scripts/study.gd" id="1_e7rny"]
+
+[node name="study" type="Node2D"]
+script = ExtResource("1_e7rny")
+
+[node name="Sprite1" type="Sprite2D" parent="."]
+
+[node name="Sprite2" type="Sprite2D" parent="."]
+
+[node name="Sprite3" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite4" type="Sprite2D" parent="." groups=["study"]]
