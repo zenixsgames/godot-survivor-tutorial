@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7ey6rymkbq8m"]
+
+[ext_resource type="Script" uid="uid://d3h8h3an106ll" path="res://scripts/weapon_hitbox.gd" id="1_7f2xp"]
+
+[node name="WeaponHitbox" type="Area2D" groups=["player_attack"]]
+script = ExtResource("1_7f2xp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

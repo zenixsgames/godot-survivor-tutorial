@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://crnr2rut8kfkv"]
+[gd_scene load_steps=10 format=3 uid="uid://crnr2rut8kfkv"]
 
 [ext_resource type="Texture2D" uid="uid://dgxi4qqil4r45" path="res://assets/Textures/Player/player_sprite.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cp1y0x1b4vx2e" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://d1jq63fwph4uw" path="res://scenes/player_hurtbox.tscn" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
 radius = 7.0
@@ -40,6 +41,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(18, 30)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 99
 motion_mode = 1
@@ -53,3 +57,14 @@ position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_dqkch")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="PlayerHurtbox" parent="." instance=ExtResource("3_qhqgy")]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="PlayerHurtbox" index="0"]
+shape = SubResource("RectangleShape2D_dqkch")
+
+[connection signal="hurt" from="PlayerHurtbox" to="." method="_on_player_hurtbox_hurt"]
+
+[editable path="PlayerHurtbox"]

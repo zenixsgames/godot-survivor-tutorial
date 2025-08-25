@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-@export var PLAYER_SPEED = 100.0
-@export var HP = 100
+@export var player_speed = 100.0
+@export var player_hp = 100
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
@@ -16,10 +16,15 @@ func _physics_process(delta: float) -> void:
 	elif direction.x < 0:
 		animated_sprite_2d.flip_h = false
 	
-	velocity = direction.normalized() * PLAYER_SPEED
+	velocity = direction.normalized() * player_speed
 	if velocity == Vector2.ZERO:
 		animated_sprite_2d.play("idle")
 	else:
 		animated_sprite_2d.play("walk")
 	
 	move_and_slide()
+
+
+func _on_player_hurtbox_hurt(damage: Variant) -> void:
+	player_hp -= damage
+	print(player_hp)

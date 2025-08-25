@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1638sujbb4in"]
+[gd_scene load_steps=12 format=3 uid="uid://b1638sujbb4in"]
 
 [ext_resource type="Texture2D" uid="uid://cysc1x7ukp3y8" path="res://assets/Textures/Enemy/kolbold_weak.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://fvmw10eer4m5" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="PackedScene" uid="uid://3dx1oraqfa73" path="res://scenes/enemy_hitbox.tscn" id="3_4ra3w"]
+[ext_resource type="PackedScene" uid="uid://blj301heay6fu" path="res://scenes/enemy_hurtbox.tscn" id="4_5uy6h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_md0e3"]
 radius = 6.0
@@ -41,6 +43,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5uy6h"]
+size = Vector2(16, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4w8v"]
+size = Vector2(16, 26)
+
 [node name="enemy" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_md0e3")
@@ -53,3 +61,22 @@ position = Vector2(-1, -2)
 sprite_frames = SubResource("SpriteFrames_c4w8v")
 animation = &"walk"
 autoplay = "idle"
+
+[node name="EnemyHitbox" parent="." instance=ExtResource("3_4ra3w")]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="EnemyHitbox" index="0"]
+shape = SubResource("RectangleShape2D_5uy6h")
+
+[node name="EnemyHurtbox" parent="." instance=ExtResource("4_5uy6h")]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="EnemyHurtbox" index="0"]
+shape = SubResource("RectangleShape2D_c4w8v")
+
+[connection signal="hit" from="EnemyHurtbox" to="." method="_on_enemy_hurtbox_hit"]
+
+[editable path="EnemyHitbox"]
+[editable path="EnemyHurtbox"]
