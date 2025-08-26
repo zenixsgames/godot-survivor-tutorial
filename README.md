@@ -14,7 +14,7 @@ This project is a personal project following the `Make a Vampire Survivors Clone
 
 |Version|Feature|
 |---|---|
-|0.1.0|Enemy Ai|
+|0.1.0|Enemy AI|
 |0.2.0|Hitbox and Hurtbox|
 
 ## 🛠️ Installation
