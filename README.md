@@ -12,7 +12,10 @@ This project is a personal project following the `Make a Vampire Survivors Clone
   <img width="600" height="400" alt="Image" src="https://github.com/user-attachments/assets/1ac15e2d-e76d-453b-8a32-31194fc6adff" />
 </p>
 
-Enemy AI will automatically chase player.
+|Version|Feature|
+|---|---|
+|0.1.0|Enemy Ai|
+|0.2.0|Hitbox and Hurtbox|
 
 ## 🛠️ Installation
 
