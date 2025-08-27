@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Spawn_info" load_steps=3 format=3 uid="uid://docc5b5mlvmn"]
+
+[ext_resource type="PackedScene" uid="uid://b1638sujbb4in" path="res://scenes/enemy.tscn" id="1_cmpvf"]
+[ext_resource type="Script" uid="uid://1eql31f7etum" path="res://scripts/spawn_info.gd" id="1_vglb4"]
+
+[resource]
+script = ExtResource("1_vglb4")
+time_start = 0.0
+time_end = 10.0
+enemy = ExtResource("1_cmpvf")
+enemy_num = 1
+enemy_spawn_delay = 1.0
+metadata/_custom_type_script = "uid://1eql31f7etum"
