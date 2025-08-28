@@ -11,3 +11,5 @@ func _on_area_entered(area: Area2D) -> void:
 		if area.has_method("short_disable"):
 			area.short_disable()
 		emit_signal("hit", area.damage)
+		if area.has_method("enemy_hit"):
+			area.enemy_hit(1)
