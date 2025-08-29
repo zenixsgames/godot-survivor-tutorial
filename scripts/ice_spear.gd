@@ -2,7 +2,7 @@ extends Area2D
 
 
 var level = 1
-var hp = 1
+var hp = 2
 var speed = 100
 var damage = 5
 var knockback_amount = 100
@@ -15,7 +15,10 @@ var angle = Vector2.ZERO
 func _ready() -> void:
 	angle = global_position.direction_to(target)
 	rotation = angle.angle() + deg_to_rad(0)
-
+	
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1,1) * attack_size, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
 
 func _physics_process(delta: float) -> void:
 	position += angle * speed * delta

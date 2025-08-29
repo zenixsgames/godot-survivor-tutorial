@@ -73,6 +73,7 @@ shape = SubResource("RectangleShape2D_dqkch")
 [node name="IceSpearTimer" type="Timer" parent="Attack"]
 
 [node name="IceSpearAttackTimer" type="Timer" parent="Attack/IceSpearTimer"]
+wait_time = 0.075
 
 [node name="EnemyDetection" type="Area2D" parent="."]
 collision_layer = 0

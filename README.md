@@ -9,7 +9,7 @@
 This project is a personal project following the `Make a Vampire Survivors Clone in Godot 4` video by Branno on [YouTube](https://www.youtube.com/playlist?list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb). 
 
 <p align="center">
-	<img width="600" height="400" alt="Image" src="https://github.com/user-attachments/assets/44a00d14-9cc0-4933-b405-2b112702e77f" />
+	<img width="600" height="400" alt="Image" src="https://github.com/user-attachments/assets/00bc5fc1-4ced-454f-bec3-69ec36e2ede8" />
 </p>
 
 |Version|Feature|
@@ -17,7 +17,7 @@ This project is a personal project following the `Make a Vampire Survivors Clone
 |0.1.0|Enemy AI|
 |0.2.0|Hitbox and Hurtbox|
 |0.3.0|Enemy Spawner|
-|0.4.0|Weapon|
+|0.4.1|Weapon|
 
 ## 🛠️ Installation
 
