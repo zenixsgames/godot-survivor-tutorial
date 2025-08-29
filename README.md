@@ -2,17 +2,19 @@
 
 ![version](https://img.shields.io/badge/version-0.1.0-blue)
 ![godot](https://img.shields.io/badge/godot-4.4.1-blue)
-[![link](https://img.shields.io/badge/link-blue)](https://www.youtube.com/watch?v=nApFtRKaDZI&list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb&index=4)
+[![link](https://img.shields.io/badge/link-blue)](https://www.youtube.com/playlist?list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb)
 
 ## ⚡ Overview
 
-This project is a personal project following the `Make a Vampire Survivors Clone in Godot 4` video by Branno on [YouTube](https://www.youtube.com//watch?v=nApFtRKaDZI&list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb&index=4). 
+This project is a personal project following the `Make a Vampire Survivors Clone in Godot 4` video by Branno on [YouTube](https://www.youtube.com/playlist?list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb). 
 
 <p align="center">
   <img width="600" height="400" alt="Image" src="https://github.com/user-attachments/assets/1ac15e2d-e76d-453b-8a32-31194fc6adff" />
 </p>
 
-Enemy AI will automatically chase player.
+|Version|Feature|
+|---|---|
+|0.1.0|Enemy AI|
 
 ## 🛠️ Installation
 
