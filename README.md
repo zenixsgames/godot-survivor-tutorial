@@ -1,6 +1,6 @@
 # ✨ Survivor Tutorial
 
-![version](https://img.shields.io/badge/version-0.4.1-blue)
+![version](https://img.shields.io/badge/version-0.5.0-blue)
 ![godot](https://img.shields.io/badge/godot-4.4.1-blue)
 [![link](https://img.shields.io/badge/link-blue)](https://www.youtube.com/playlist?list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb)
 
@@ -18,6 +18,7 @@ This project is a personal project following the `Make a Vampire Survivors Clone
 |0.2.0|Hitbox and Hurtbox|
 |0.3.0|Enemy Spawner|
 |0.4.1|Weapon|
+|0.5.0|Knockback|
 
 ## 🛠️ Installation
 

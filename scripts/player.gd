@@ -12,7 +12,7 @@ var icespear = load("res://scenes/ice_spear.tscn")
 
 
 var icespear_ammo = 0
-var icespear_baseammo = 3
+var icespear_baseammo = 1
 var icespear_attackspeed = 1.5
 var icespear_level = 1
 var enemy_close = []
@@ -48,7 +48,7 @@ func attack():
 			ice_spear_timer.start()
 
 
-func _on_player_hurtbox_hurt(damage: Variant) -> void:
+func _on_player_hurtbox_hurt(damage, _angle, _knockback) -> void:
 	player_hp -= damage
 	print(player_hp)
 
