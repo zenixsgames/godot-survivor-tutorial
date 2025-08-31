@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 var knockback = Vector2.ZERO
 var knockback_recovery = 2.5
+@onready var damaged_sound: AudioStreamPlayer2D = $DamagedSound
+const EXPLOSION = preload("res://scenes/explosion.tscn")
 
 
 func _physics_process(delta: float) -> void:
@@ -30,4 +32,15 @@ func _on_enemy_hurtbox_hit(damage, angle, knockback_amount) -> void:
 	enemy_hp -= damage
 	knockback = angle * knockback_amount
 	if enemy_hp <= 0:
-		queue_free()
+		death()
+	else:
+		damaged_sound.play()
+
+
+func death():
+	var enemy_death = EXPLOSION.instantiate()
+	enemy_death.scale = animated_sprite_2d.scale
+	enemy_death.global_position = global_position
+	get_parent().add_child(enemy_death)
+	queue_free()
+	
