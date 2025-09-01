@@ -64,11 +64,13 @@ func _on_ice_spear_attack_timer_timeout() -> void:
 		icespear_attack.position = global_position
 		icespear_attack.target = get_random_target()
 		icespear_attack.level = icespear_level
-		add_child(icespear_attack)
-		icespear_ammo -= 1
-		if icespear_ammo > 0:
+		
+		if icespear_ammo > 0 and icespear_attack.target != Vector2.ZERO:
+			add_child(icespear_attack)
 			ice_spear_attack_timer.start()
+			icespear_ammo -= 1
 		else:
+			icespear_ammo = 0
 			ice_spear_attack_timer.stop()
 
 
@@ -76,7 +78,7 @@ func get_random_target():
 	if enemy_close.size() > 0:
 		return enemy_close.pick_random().global_position
 	else:
-		return Vector2.UP
+		return Vector2.ZERO
 
 
 func _on_enemy_detection_body_entered(body: Node2D) -> void:
