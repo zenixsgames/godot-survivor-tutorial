@@ -9,13 +9,21 @@ var player_hp = 100
 var icespear = load("res://scenes/ice_spear.tscn")
 @onready var ice_spear_timer: Timer = $Attack/IceSpearTimer
 @onready var ice_spear_attack_timer: Timer = $Attack/IceSpearTimer/IceSpearAttackTimer
-
-
 var icespear_ammo = 0
 var icespear_baseammo = 1
 var icespear_attackspeed = 1.5
-var icespear_level = 1
+var icespear_level = 0
 var enemy_close = []
+
+
+var last_movement = Vector2.ZERO
+var tornado = load("res://scenes/tornado.tscn")
+@onready var tornado_timer: Timer = $Attack/TornadoTimer
+@onready var tornado_attack_timer: Timer = $Attack/TornadoTimer/TornadoAttackTimer
+var tornado_ammo = 0
+var tornado_baseammo = 5
+var tornado_attackspeed = 3
+var tornado_level = 1
 
 
 func _ready() -> void:
@@ -38,6 +46,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		animated_sprite_2d.play("walk")
 	
+	if direction != Vector2.ZERO:
+		last_movement = direction
+	
 	move_and_slide()
 
 
@@ -46,6 +57,10 @@ func attack():
 		ice_spear_timer.wait_time = icespear_attackspeed
 		if ice_spear_timer.is_stopped():
 			ice_spear_timer.start()
+	if tornado_level > 0:
+		tornado_timer.wait_time = tornado_attackspeed
+		if tornado_timer.is_stopped():
+			tornado_timer.start()
 
 
 func _on_player_hurtbox_hurt(damage, _angle, _knockback) -> void:
@@ -89,3 +104,24 @@ func _on_enemy_detection_body_entered(body: Node2D) -> void:
 func _on_enemy_detection_body_exited(body: Node2D) -> void:
 	if enemy_close.has(body):
 		enemy_close.erase(body)
+
+
+func _on_tornado_timer_timeout() -> void:
+	tornado_ammo += tornado_baseammo
+	tornado_attack_timer.start()
+
+
+func _on_tornado_attack_timer_timeout() -> void:
+	if tornado_ammo > 0:
+		var tornado_attack = tornado.instantiate()
+		tornado_attack.position = global_position
+		tornado_attack.last_movement = last_movement
+		tornado_attack.level = tornado_level
+		
+		if tornado_ammo > 0 and tornado_attack.last_movement != Vector2.ZERO:
+			add_child(tornado_attack)
+			tornado_attack_timer.start()
+			tornado_ammo -= 1
+		else:
+			tornado_ammo = 0
+			tornado_attack_timer.stop()
