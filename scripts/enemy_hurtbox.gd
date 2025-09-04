@@ -19,6 +19,13 @@ func _on_area_entered(area: Area2D) -> void:
 			knockback = area.knockback_amount
 		if not hit_once_array.has(area):
 			hit_once_array.append(area)
+			if not area.is_connected("remove_from_array", Callable(self,"remove_from_list")):
+				area.connect("remove_from_array", Callable(self,"remove_from_list"))
 			emit_signal("hit", damage, angle, knockback)
 			if area.has_method("enemy_hit"):
 				area.enemy_hit(1)
+
+
+func remove_from_list(obj):
+	if hit_once_array.has(obj):
+		hit_once_array.erase(obj)

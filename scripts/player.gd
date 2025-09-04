@@ -23,7 +23,13 @@ var tornado = load("res://scenes/tornado.tscn")
 var tornado_ammo = 0
 var tornado_baseammo = 5
 var tornado_attackspeed = 3
-var tornado_level = 1
+var tornado_level = 0
+
+
+var javelin = preload("res://scenes/javelin.tscn")
+@onready var javelin_base: Node2D = $Attack/JavelinBase
+var javelin_ammo = 1
+var javelin_level = 1
 
 
 func _ready() -> void:
@@ -61,7 +67,8 @@ func attack():
 		tornado_timer.wait_time = tornado_attackspeed
 		if tornado_timer.is_stopped():
 			tornado_timer.start()
-
+	if javelin_level > 0:
+		spawn_javelin()
 
 func _on_player_hurtbox_hurt(damage, _angle, _knockback) -> void:
 	player_hp -= damage
@@ -125,3 +132,13 @@ func _on_tornado_attack_timer_timeout() -> void:
 		else:
 			tornado_ammo = 0
 			tornado_attack_timer.stop()
+
+
+func spawn_javelin():
+	var get_javelin_total = javelin_base.get_child_count()
+	var calc_spawns = javelin_ammo - get_javelin_total
+	while  calc_spawns > 0:
+		var javelin_spawn = javelin.instantiate()
+		javelin_spawn.global_position = global_position
+		javelin_base.add_child(javelin_spawn)
+		calc_spawns -= 1

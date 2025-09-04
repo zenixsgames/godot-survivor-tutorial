@@ -1,6 +1,6 @@
 # ✨ Survivor Tutorial
 
-![version](https://img.shields.io/badge/version-0.6.0-blue)
+![version](https://img.shields.io/badge/version-0.7.0-blue)
 ![godot](https://img.shields.io/badge/godot-4.4.1-blue)
 [![link](https://img.shields.io/badge/link-blue)](https://www.youtube.com/playlist?list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb)
 
@@ -9,7 +9,7 @@
 This project is a personal project following the `Make a Vampire Survivors Clone in Godot 4` video by Branno on [YouTube](https://www.youtube.com/playlist?list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb). 
 
 <p align="center">
-	<img width="600" height="400" alt="Image" src="https://github.com/user-attachments/assets/aa0a46f8-6476-42d8-8a64-a753784f800b" />
+	<img width="600" height="400" alt="Image" src="https://github.com/user-attachments/assets/6878d2ab-6a11-4aec-8b66-751172618f20" />
 </p>
 
 |Version|Feature|
@@ -20,6 +20,7 @@ This project is a personal project following the `Make a Vampire Survivors Clone
 |0.4.1|IceSpear Weapon|
 |0.5.1|Enemy Damaged Effect|
 |0.6.0|Tornado Weapon|
+|0.7.0|Javelin Weapon|
 
 ## 🛠️ Installation
 
