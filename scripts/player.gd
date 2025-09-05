@@ -28,7 +28,7 @@ var tornado_level = 0
 
 var javelin = preload("res://scenes/javelin.tscn")
 @onready var javelin_base: Node2D = $Attack/JavelinBase
-var javelin_ammo = 1
+var javelin_ammo = 3
 var javelin_level = 1
 
 

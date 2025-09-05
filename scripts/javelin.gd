@@ -33,6 +33,7 @@ signal remove_from_array(obj)
 
 func _ready() -> void:
 	update_jav()
+	_on_reset_pos_timer_timeout()
 
 
 func update_jav():
@@ -44,6 +45,14 @@ func update_jav():
 func _physics_process(delta: float) -> void:
 	if target_array.size() > 0:
 		position += angle * speed * delta
+	else:
+		var player_angle = global_position.direction_to(reset_pos)
+		var distance_dif = global_position - player.global_position
+		var return_speed = 20
+		if abs(distance_dif.x) > 500 or abs(distance_dif.y) > 500:
+			return_speed = 100
+		position += player_angle * return_speed * delta
+		rotation = global_position.direction_to(player.global_position).angle()
 
 
 func add_paths():
@@ -55,7 +64,7 @@ func add_paths():
 		var new_path = player.get_random_target()
 		target_array.append(new_path)
 		counter += 1
-		enable_attack(true)
+	enable_attack(true)
 	target = target_array[0]
 	process_path()
 
@@ -63,6 +72,10 @@ func add_paths():
 func process_path():
 	angle = global_position.direction_to(target)
 	change_direction_timer.start()
+	var tween = create_tween()
+	var new_rotation_deg = angle.angle() + deg_to_rad(0)
+	tween.tween_property(self,"rotation", new_rotation_deg,0.25).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
 
 
 func enable_attack(atk = true):
@@ -92,3 +105,17 @@ func _on_change_direction_timer_timeout() -> void:
 		change_direction_timer.stop()
 		attack_timer.start()
 		enable_attack(false)
+
+
+func _on_reset_pos_timer_timeout() -> void:
+	var choose_direction = randi() % 4
+	reset_pos = player.global_position
+	match choose_direction:
+		0:
+			reset_pos.x += 50
+		1:
+			reset_pos.x -= 50
+		2:
+			reset_pos.y += 50
+		3:
+			reset_pos.y -= 50
