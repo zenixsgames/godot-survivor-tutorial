@@ -32,8 +32,18 @@ var javelin_ammo = 3
 var javelin_level = 1
 
 
+var experience = 0
+var experience_level = 1
+var collected_exp = 0
+
+
+@onready var exp_bar: TextureProgressBar = $GUILayer/GUI/ExpBar
+@onready var label_level: Label = $GUILayer/GUI/ExpBar/LabelLevel
+
+
 func _ready() -> void:
 	attack()
+	set_expbar(experience, calculate_exp_cap())
 
 
 func _physics_process(delta: float) -> void:
@@ -142,3 +152,50 @@ func spawn_javelin():
 		javelin_spawn.global_position = global_position
 		javelin_base.add_child(javelin_spawn)
 		calc_spawns -= 1
+
+
+func _on_grab_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		area.target = self
+	pass # Replace with function body.
+
+
+func _on_collect_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		var gem_exp = area.collect()
+		calculate_exp(gem_exp)
+	pass # Replace with function body.
+
+
+func calculate_exp(gem_exp):
+	var exp_required = calculate_exp_cap()
+	collected_exp += gem_exp
+	if experience + collected_exp >= exp_required:
+		collected_exp -= exp_required - experience
+		experience_level += 1
+		label_level.text = str("Level: ", experience_level)
+		print("level: " + str(experience_level))
+		experience = 0
+		exp_required = calculate_exp_cap()
+		calculate_exp(0)
+	else:
+		experience += collected_exp
+		collected_exp = 0
+	set_expbar(experience, exp_required)
+
+
+func calculate_exp_cap():
+	var exp_cap = experience_level
+	if experience_level < 20:
+		exp_cap = experience_level * 5
+	elif experience_level < 40:
+		exp_cap = 95 * (experience_level - 19) * 8
+	else:
+		exp_cap = 255 * (experience_level - 39) * 12
+	
+	return exp_cap
+
+
+func set_expbar(set_value = 1, set_max_value = 100):
+	exp_bar.value = set_value
+	exp_bar.max_value = set_max_value

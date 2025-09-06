@@ -29,6 +29,7 @@ player=""
 study=""
 player_attack=""
 enemy_attack=""
+loot=""
 
 [input]
 

@@ -100,6 +100,8 @@ func _on_change_direction_timer_timeout() -> void:
 			audio_stream_player_2d.play()
 			emit_signal("remove_from_array", self)
 		else:
+			change_direction_timer.stop()
+			attack_timer.start()
 			enable_attack(false)
 	else:
 		change_direction_timer.stop()
