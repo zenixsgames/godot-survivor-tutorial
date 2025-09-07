@@ -174,7 +174,6 @@ func calculate_exp(gem_exp):
 		collected_exp -= exp_required - experience
 		experience_level += 1
 		label_level.text = str("Level: ", experience_level)
-		print("level: " + str(experience_level))
 		experience = 0
 		exp_required = calculate_exp_cap()
 		calculate_exp(0)

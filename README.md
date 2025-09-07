@@ -1,6 +1,6 @@
 # ✨ Survivor Tutorial
 
-![version](https://img.shields.io/badge/version-0.8.0-blue)
+![version](https://img.shields.io/badge/version-0.8.1-blue)
 ![godot](https://img.shields.io/badge/godot-4.4.1-blue)
 [![link](https://img.shields.io/badge/link-blue)](https://www.youtube.com/playlist?list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb)
 
@@ -21,7 +21,7 @@ This project is a personal project following the `Make a Vampire Survivors Clone
 |0.5.1|Enemy Damaged Effect|
 |0.6.0|Tornado Weapon|
 |0.7.1|Javelin Weapon|
-|0.8.0|Exp|
+|0.8.1|Exp|
 
 ## 🛠️ Installation
 
