@@ -41,6 +41,14 @@ var collected_exp = 0
 @onready var label_level: Label = $GUILayer/GUI/ExpBar/LabelLevel
 
 
+@onready var level_up_panel: Panel = $GUILayer/GUI/LevelUp
+@onready var upgrade_options: VBoxContainer = $GUILayer/GUI/LevelUp/UpgradeOptions
+@onready var level_up_sound: AudioStreamPlayer = $GUILayer/GUI/LevelUp/LevelUpSound
+
+
+@onready var item_option = preload("res://scenes/item_option.tscn")
+
+
 func _ready() -> void:
 	attack()
 	set_expbar(experience, calculate_exp_cap())
@@ -173,10 +181,9 @@ func calculate_exp(gem_exp):
 	if experience + collected_exp >= exp_required:
 		collected_exp -= exp_required - experience
 		experience_level += 1
-		label_level.text = str("Level: ", experience_level)
 		experience = 0
 		exp_required = calculate_exp_cap()
-		calculate_exp(0)
+		levelup()
 	else:
 		experience += collected_exp
 		collected_exp = 0
@@ -198,3 +205,26 @@ func calculate_exp_cap():
 func set_expbar(set_value = 1, set_max_value = 100):
 	exp_bar.value = set_value
 	exp_bar.max_value = set_max_value
+
+
+func levelup():
+	level_up_sound.play()
+	label_level.text = str("Level: ", experience_level)
+	level_up_panel.call_deferred("set","visible",true)
+	get_tree().paused = true
+	var options = 0
+	var options_max = 3
+	while options < options_max:
+		var option_choice = item_option.instantiate()
+		upgrade_options.add_child(option_choice)
+		options += 1
+
+
+func upgrade_player(upgrade):
+	var option_children = upgrade_options.get_children()
+	for i in option_children:
+		i.queue_free()
+	level_up_panel.visible = false
+	get_tree().paused = false
+	calculate_exp(0)
+	
