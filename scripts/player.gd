@@ -9,10 +9,10 @@ var player_hp = 100
 var icespear = load("res://scenes/ice_spear.tscn")
 @onready var ice_spear_timer: Timer = $Attack/IceSpearTimer
 @onready var ice_spear_attack_timer: Timer = $Attack/IceSpearTimer/IceSpearAttackTimer
-var icespear_ammo = 0
+var icespear_ammo = 1
 var icespear_baseammo = 1
 var icespear_attackspeed = 1.5
-var icespear_level = 0
+var icespear_level = 1
 var enemy_close = []
 
 
@@ -21,15 +21,15 @@ var tornado = load("res://scenes/tornado.tscn")
 @onready var tornado_timer: Timer = $Attack/TornadoTimer
 @onready var tornado_attack_timer: Timer = $Attack/TornadoTimer/TornadoAttackTimer
 var tornado_ammo = 0
-var tornado_baseammo = 5
+var tornado_baseammo = 1
 var tornado_attackspeed = 3
 var tornado_level = 0
 
 
 var javelin = preload("res://scenes/javelin.tscn")
 @onready var javelin_base: Node2D = $Attack/JavelinBase
-var javelin_ammo = 3
-var javelin_level = 1
+var javelin_ammo = 0
+var javelin_level = 0
 
 
 var experience = 0
@@ -42,11 +42,18 @@ var collected_exp = 0
 
 
 @onready var level_up_panel: Panel = $GUILayer/GUI/LevelUp
-@onready var upgrade_options: VBoxContainer = $GUILayer/GUI/LevelUp/UpgradeOptions
+@onready var upgrade_option: VBoxContainer = $GUILayer/GUI/LevelUp/UpgradeOption
 @onready var level_up_sound: AudioStreamPlayer = $GUILayer/GUI/LevelUp/LevelUpSound
-
-
 @onready var item_option = preload("res://scenes/item_option.tscn")
+
+
+var collected_upgrades = []
+var upgrade_options = []
+var armor = 0
+var speed = 0
+var spell_cooldown = 0
+var spell_size = 0
+var additional_attacks = 0
 
 
 func _ready() -> void:
@@ -216,15 +223,42 @@ func levelup():
 	var options_max = 3
 	while options < options_max:
 		var option_choice = item_option.instantiate()
-		upgrade_options.add_child(option_choice)
+		option_choice.item = get_random_item()
+		upgrade_option.add_child(option_choice)
 		options += 1
 
 
 func upgrade_player(upgrade):
-	var option_children = upgrade_options.get_children()
+	var option_children = upgrade_option.get_children()
 	for i in option_children:
 		i.queue_free()
+	upgrade_options.clear()
+	collected_upgrades.append(upgrade)
 	level_up_panel.visible = false
 	get_tree().paused = false
 	calculate_exp(0)
-	
+
+
+func get_random_item():
+	var dbList = []
+	for i in UpgradeDb.UPGRADES:
+		if i in collected_upgrades:
+			pass
+		elif i in upgrade_options:
+			pass
+		elif UpgradeDb.UPGRADES[i]["type"] == "item":
+			pass
+		elif UpgradeDb.UPGRADES[i]["prerequisite"].size() > 0:
+			for n in UpgradeDb.UPGRADES[i]["prerequisite"]:
+				if n not in collected_upgrades:
+					pass
+				else:
+					dbList.append(i)
+		else :
+			dbList.append(i)
+	if dbList.size() > 0:
+		var random_item = dbList.pick_random()
+		upgrade_options.append(random_item)
+		return random_item
+	else:
+		return null

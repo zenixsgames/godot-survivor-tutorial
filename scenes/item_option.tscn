@@ -44,6 +44,7 @@ offset_bottom = 48.0
 theme_override_fonts/font = ExtResource("2_175qx")
 theme_override_font_sizes/font_size = 8
 text = "Description of Item"
+autowrap_mode = 2
 
 [node name="LabelLevel" type="Label" parent="."]
 layout_mode = 0
@@ -55,5 +56,6 @@ theme_override_fonts/font = ExtResource("2_175qx")
 theme_override_font_sizes/font_size = 12
 text = "level:1"
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
