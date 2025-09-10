@@ -4,7 +4,7 @@ extends Area2D
 var level = 1
 var hp = 999
 var speed = 200.0
-var damage = 5
+var damage = 5.0
 var attack_size = 1.0
 var knockback_amount = 100
 
@@ -20,6 +20,32 @@ signal remove_from_array(obj)
 
 
 func _ready() -> void:
+	match level:
+		1:
+			hp = 999
+			speed = 100.0
+			damage = 5
+			knockback_amount = 100
+			attack_size = 1.0 * (1 + player.spell_size)
+		2:
+			hp = 999
+			speed = 100.0
+			damage = 5
+			knockback_amount = 100
+			attack_size = 1.0 * (1 + player.spell_size)
+		3:
+			hp = 999
+			speed = 100.0
+			damage = 5
+			knockback_amount = 100
+			attack_size = 1.0 * (1 + player.spell_size)
+		4:
+			hp = 999
+			speed = 100.0
+			damage = 5
+			knockback_amount = 125
+			attack_size = 1.0 * (1 + player.spell_size)
+	
 	var move_to_less = Vector2.ZERO
 	var move_to_more = Vector2.ZERO
 	match last_movement:

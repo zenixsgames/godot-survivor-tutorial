@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://doo80mccapocn"]
+[gd_scene load_steps=6 format=3 uid="uid://doo80mccapocn"]
 
 [ext_resource type="Texture2D" uid="uid://d2ubrytdogi12" path="res://assets/Textures/dirt_full_new.png" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://crnr2rut8kfkv" path="res://scenes/player.tscn" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://br4b3dqlt3q3k" path="res://scenes/enemy_spawner.tscn" id="4_k0juu"]
 [ext_resource type="Script" uid="uid://1eql31f7etum" path="res://scripts/spawn_info.gd" id="5_71j4m"]
+[ext_resource type="PackedScene" uid="uid://ihemmj1qll3p" path="res://scenes/experience_gem.tscn" id="5_qfnet"]
 
 [node name="World" type="Node2D"]
 
@@ -22,3 +23,15 @@ region_rect = Rect2(0, 0, 4048, 4048)
 spawn_arr = Array[ExtResource("5_71j4m")]([])
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
+
+[node name="ExperienceGem" parent="Loot" instance=ExtResource("5_qfnet")]
+position = Vector2(-30, -40)
+experience = 500
+
+[node name="ExperienceGem2" parent="Loot" instance=ExtResource("5_qfnet")]
+position = Vector2(0, -50)
+experience = 2
+
+[node name="ExperienceGem3" parent="Loot" instance=ExtResource("5_qfnet")]
+position = Vector2(30, -40)
+experience = 2
