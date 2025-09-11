@@ -26,7 +26,7 @@ spawn_arr = Array[ExtResource("5_71j4m")]([])
 
 [node name="ExperienceGem" parent="Loot" instance=ExtResource("5_qfnet")]
 position = Vector2(-30, -40)
-experience = 500
+experience = 2
 
 [node name="ExperienceGem2" parent="Loot" instance=ExtResource("5_qfnet")]
 position = Vector2(0, -50)

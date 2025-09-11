@@ -6,6 +6,14 @@ extends Node2D
 var time = 0
 
 
+signal changetime(time)
+
+
+func _ready() -> void:
+	connect("changetime", Callable(player, "change_time"))
+	spawn_arr.append(load("res://resoures/new_resource.tres"))
+
+
 func _on_timer_timeout() -> void:
 	time += 1
 	for i in spawn_arr:
@@ -19,6 +27,7 @@ func _on_timer_timeout() -> void:
 					tmp_enemy.global_position = get_rand_pos()
 					add_child(tmp_enemy)
 					count += 1
+	emit_signal("changetime", time)
 
 
 func get_rand_pos():
@@ -47,7 +56,3 @@ func get_rand_pos():
 				player.global_position.y + randf_range(-viewport_rect_size.y, viewport_rect_size.y)
 			)
 	return rand_pos
-
-
-func _ready() -> void:
-	spawn_arr.append(load("res://resoures/new_resource.tres"))

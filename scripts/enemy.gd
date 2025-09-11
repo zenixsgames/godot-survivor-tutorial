@@ -11,7 +11,7 @@ var knockback_recovery = 2.5
 const EXPLOSION = preload("res://scenes/explosion.tscn")
 @onready var loot_base = get_tree().get_first_node_in_group("loot")
 var exp_gem = preload("res://scenes/experience_gem.tscn")
-@export var experience = 20
+@export var experience = 5
 
 
 func _physics_process(delta: float) -> void:

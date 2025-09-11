@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 var movement_speed = 100.0
 var hp = 100
-var maxhp = 80
+var maxhp = 100
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
@@ -57,9 +57,15 @@ var spell_size = 0
 var additional_attacks = 0
 
 
+@onready var health_bar: TextureProgressBar = $GUILayer/GUI/HealthBar
+@onready var label_timer: Label = $GUILayer/GUI/LabelTimer
+var time = 0
+
+
 func _ready() -> void:
 	attack()
 	set_expbar(experience, calculate_exp_cap())
+	_on_player_hurtbox_hurt(0,0,0)
 
 
 func _physics_process(delta: float) -> void:
@@ -98,6 +104,8 @@ func attack():
 
 func _on_player_hurtbox_hurt(damage, _angle, _knockback) -> void:
 	hp -= clamp(damage - armor, 1.0, 999.0)
+	health_bar.max_value = maxhp
+	health_bar.value = hp
 	print(hp)
 
 
@@ -177,14 +185,12 @@ func spawn_javelin():
 func _on_grab_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("loot"):
 		area.target = self
-	pass # Replace with function body.
 
 
 func _on_collect_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("loot"):
 		var gem_exp = area.collect()
 		calculate_exp(gem_exp)
-	pass # Replace with function body.
 
 
 func calculate_exp(gem_exp):
@@ -315,3 +321,14 @@ func get_random_item():
 		return random_item
 	else:
 		return null
+
+
+func change_time(argtime = 0):
+	time = argtime
+	var get_m = int(time / 60.0)
+	var get_s = time % 60
+	if get_m < 10:
+		get_m = str(0, get_m)
+	if get_s < 10:
+		get_s = str(0, get_s)
+	label_timer.text = str(get_m, ':', get_s)
