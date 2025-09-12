@@ -62,6 +62,11 @@ var additional_attacks = 0
 var time = 0
 
 
+@onready var collected_weapons_grid: GridContainer = $GUILayer/GUI/CollectedWeapons
+@onready var collected_upgrades_grid: GridContainer = $GUILayer/GUI/CollectedUpgrades
+@onready var item_container = preload("res://scenes/item_container.tscn")
+
+
 func _ready() -> void:
 	attack()
 	set_expbar(experience, calculate_exp_cap())
@@ -286,6 +291,7 @@ func upgrade_player(upgrade):
 		"food":
 			hp += 20
 			hp = clamp(hp,0,maxhp)
+	adjust_gui_collection(upgrade)
 	attack()
 	var option_children = upgrade_option.get_children()
 	for i in option_children:
@@ -332,3 +338,20 @@ func change_time(argtime = 0):
 	if get_s < 10:
 		get_s = str(0, get_s)
 	label_timer.text = str(get_m, ':', get_s)
+
+
+func adjust_gui_collection(upgrade):
+	var get_upgraded_displaynames = UpgradeDb.UPGRADES[upgrade]["displayname"]
+	var get_type = UpgradeDb.UPGRADES[upgrade]["type"]
+	if get_type != "item":
+		var get_collected_displaynames = []
+		for i in collected_upgrades:
+			get_collected_displaynames.append(UpgradeDb.UPGRADES[i]["displayname"])
+		if not get_upgraded_displaynames in get_collected_displaynames:
+			var new_item = item_container.instantiate()
+			new_item.upgrade = upgrade
+			match get_type:
+				"weapon":
+					collected_weapons_grid.add_child(new_item)
+				"upgrade":
+					collected_upgrades_grid.add_child(new_item)
