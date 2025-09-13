@@ -11,7 +11,7 @@ var icespear = load("res://scenes/ice_spear.tscn")
 @onready var ice_spear_timer: Timer = $Attack/IceSpearTimer
 @onready var ice_spear_attack_timer: Timer = $Attack/IceSpearTimer/IceSpearAttackTimer
 var icespear_ammo = 0
-var icespear_baseammo = 1
+var icespear_baseammo = 0
 var icespear_attackspeed = 1.5
 var icespear_level = 0
 var enemy_close = []
@@ -22,7 +22,7 @@ var tornado = load("res://scenes/tornado.tscn")
 @onready var tornado_timer: Timer = $Attack/TornadoTimer
 @onready var tornado_attack_timer: Timer = $Attack/TornadoTimer/TornadoAttackTimer
 var tornado_ammo = 0
-var tornado_baseammo = 1
+var tornado_baseammo = 0
 var tornado_attackspeed = 3
 var tornado_level = 0
 

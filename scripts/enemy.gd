@@ -6,12 +6,21 @@ extends CharacterBody2D
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 var knockback = Vector2.ZERO
-var knockback_recovery = 2.5
+@export	 var knockback_recovery = 2.5
 @onready var damaged_sound: AudioStreamPlayer2D = $DamagedSound
 const EXPLOSION = preload("res://scenes/explosion.tscn")
 @onready var loot_base = get_tree().get_first_node_in_group("loot")
 var exp_gem = preload("res://scenes/experience_gem.tscn")
 @export var experience = 5
+@export var damage = 1
+@export var attack_speed = 0.5
+@onready var enemy_hitbox: Area2D = $EnemyHitbox
+
+
+func _ready() -> void:
+	enemy_hitbox.damage = damage
+	enemy_hitbox.attack_speed = attack_speed
+	pass
 
 
 func _physics_process(delta: float) -> void:

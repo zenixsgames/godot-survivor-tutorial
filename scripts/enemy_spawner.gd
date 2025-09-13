@@ -11,7 +11,7 @@ signal changetime(time)
 
 func _ready() -> void:
 	connect("changetime", Callable(player, "change_time"))
-	spawn_arr.append(load("res://resoures/new_resource.tres"))
+	#spawn_arr.append(load("res://resoures/new_resource.tres"))
 
 
 func _on_timer_timeout() -> void:
