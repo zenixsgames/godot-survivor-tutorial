@@ -67,6 +67,14 @@ var time = 0
 @onready var item_container = preload("res://scenes/item_container.tscn")
 
 
+@onready var death_panel: Panel = $GUILayer/GUI/DeathPanel
+@onready var label_result: Label = $GUILayer/GUI/DeathPanel/LabelResult
+@onready var snd_victory: AudioStreamPlayer = $GUILayer/GUI/DeathPanel/snd_victory
+@onready var snd_lose: AudioStreamPlayer = $GUILayer/GUI/DeathPanel/snd_lose
+@onready var btn_menu: Button = $GUILayer/GUI/DeathPanel/btn_menu
+
+
+
 func _ready() -> void:
 	attack()
 	set_expbar(experience, calculate_exp_cap())
@@ -111,7 +119,8 @@ func _on_player_hurtbox_hurt(damage, _angle, _knockback) -> void:
 	hp -= clamp(damage - armor, 1.0, 999.0)
 	health_bar.max_value = maxhp
 	health_bar.value = hp
-	print(hp)
+	if hp <= 0:
+		death()
 
 
 func _on_ice_spear_timer_timeout() -> void:
@@ -355,3 +364,19 @@ func adjust_gui_collection(upgrade):
 					collected_weapons_grid.add_child(new_item)
 				"upgrade":
 					collected_upgrades_grid.add_child(new_item)
+
+
+func death():
+	death_panel.visible = true
+	get_tree().paused = true
+	if time >= 300:
+		label_result.text = "You win!"
+		snd_victory.play()
+	else:
+		label_result.text = "You lose"
+		snd_lose.play()
+
+
+func _on_btn_menu_click_end() -> void:
+	get_tree().paused = false
+	var level = get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
