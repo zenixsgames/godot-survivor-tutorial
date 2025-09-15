@@ -74,6 +74,8 @@ var time = 0
 @onready var btn_menu: Button = $GUILayer/GUI/DeathPanel/btn_menu
 
 
+signal playerdeath()
+
 
 func _ready() -> void:
 	attack()
@@ -368,6 +370,7 @@ func adjust_gui_collection(upgrade):
 
 func death():
 	death_panel.visible = true
+	emit_signal("playerdeath")
 	get_tree().paused = true
 	if time >= 300:
 		label_result.text = "You win!"

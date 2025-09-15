@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://doo80mccapocn"]
+[gd_scene load_steps=22 format=3 uid="uid://doo80mccapocn"]
 
 [ext_resource type="Texture2D" uid="uid://d2ubrytdogi12" path="res://assets/Textures/dirt_full_new.png" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://crnr2rut8kfkv" path="res://scenes/player.tscn" id="2_rwgxs"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://d2vjfrp3t3nww" path="res://scenes/enemy_cyclops.tscn" id="7_q5onr"]
 [ext_resource type="PackedScene" uid="uid://blimq8qnbaexq" path="res://scenes/enemy_juggernaut.tscn" id="8_jhx03"]
 [ext_resource type="PackedScene" uid="uid://bbvvmcw7o1wpd" path="res://scenes/enemy_super.tscn" id="9_o8fc1"]
+[ext_resource type="AudioStream" uid="uid://cgwpi81htxj3t" path="res://assets/Audio/Music/battleThemeA.mp3" id="11_e3hyu"]
+[ext_resource type="Script" uid="uid://dqb02fi4pdm1f" path="res://scripts/snd_music.gd" id="12_q5onr"]
 
 [sub_resource type="Resource" id="Resource_xo05s"]
 script = ExtResource("5_71j4m")
@@ -121,3 +123,11 @@ experience = 2
 [node name="ExperienceGem3" parent="Loot" instance=ExtResource("5_qfnet")]
 position = Vector2(30, -40)
 experience = 2
+
+[node name="snd_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_e3hyu")
+volume_db = -15.0
+autoplay = true
+script = ExtResource("12_q5onr")
+
+[connection signal="playerdeath" from="Player" to="snd_music" method="_on_player_playerdeath"]

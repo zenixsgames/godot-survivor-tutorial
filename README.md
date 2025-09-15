@@ -1,6 +1,6 @@
 # ✨ Survivor Tutorial
 
-![version](https://img.shields.io/badge/version-0.12.0-blue)
+![version](https://img.shields.io/badge/version-1.0.0-blue)
 ![godot](https://img.shields.io/badge/godot-4.4.1-blue)
 [![link](https://img.shields.io/badge/link-blue)](https://www.youtube.com/playlist?list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb)
 
@@ -9,7 +9,7 @@
 This project is a personal project following the `Make a Vampire Survivors Clone in Godot 4` video by Branno on [YouTube](https://www.youtube.com/playlist?list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb). 
 
 <p align="center">
-	<img width="600" height="400" alt="Image" src="https://github.com/user-attachments/assets/4b629756-1012-4d5b-a148-ce8c2b8ff257" />
+	<img width="600" height="400" alt="Image" src="https://github.com/user-attachments/assets/35dfed6f-b408-413a-8300-73dbe6c97e62" />
 </p>
 
 |Version|Feature|
@@ -26,6 +26,7 @@ This project is a personal project following the `Make a Vampire Survivors Clone
 |0.10.1|Advanced UI|
 |0.11.0|Advanced Enemy|
 |0.12.0|Player Died|
+|1.0.0|Main Menu|
 
 ## 🛠️ Installation
 
